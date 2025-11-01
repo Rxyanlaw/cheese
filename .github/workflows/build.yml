@@ -23,7 +23,8 @@ jobs:
     
     - name: Build cheese
       run: |
-        $ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android34-clang -o cheese cheese.c
+        # Use the NDK clang compiler for ARM64 Android
+        ${ANDROID_NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android34-clang -o cheese cheese.c
     
     - name: Upload artifact
       uses: actions/upload-artifact@v4
