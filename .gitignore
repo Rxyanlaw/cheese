@@ -1,0 +1,21 @@
+# Compiled binary
+cheese
+
+# Build artifacts
+*.o
+*.so
+*.a
+
+# Editor files
+*.swp
+*.swo
+*~
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+
+# Temporary files
+*.tmp

@@ -1,0 +1,33 @@
+name: Build Cheese
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup Android NDK
+      uses: nttld/setup-ndk@v1
+      with:
+        ndk-version: r26d
+        add-to-path: true
+    
+    - name: Build cheese
+      run: |
+        $ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android34-clang -o cheese cheese.c
+    
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: cheese-binary
+        path: cheese
+        retention-days: 90
